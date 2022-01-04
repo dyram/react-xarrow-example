@@ -1,0 +1,21 @@
+.operation-container {
+  display: flex;
+}
+
+.operation-container > .right {
+  margin-left: auto;
+}
+
+.node {
+  padding: 10px;
+  border: 1px solid black;
+  cursor: pointer;
+}
+
+.node:hover {
+  background-color: lightskyblue;
+}
+
+.selected {
+  background-color: lightskyblue;
+}
