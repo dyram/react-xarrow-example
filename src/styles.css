@@ -54,3 +54,8 @@
 .pointed {
   cursor: pointer;
 }
+
+.pane {
+  padding: 10px;
+  overflow-y: scroll;
+}

@@ -1,0 +1,36 @@
+<PanelGroup
+        borderColor="gray"
+        direction="column"
+        panelWidths={[
+          { minSize: 200, resize: 'stretch' },
+          { minSize: 100, resize: 'stretch' },
+        ]}
+      >
+        <PanelGroup
+          borderColor="red"
+          panelWidths={[
+            { minSize: 100, resize: 'stretch' },
+            { minSize: 100, resize: 'stretch' },
+            { minSize: 100, resize: 'stretch' },
+          ]}
+          direction="row"
+        >
+          <div className="pane">
+            <div style={{ display: 'flex' }}>
+              Source1
+              <input />
+            </div>
+            <div>Source 2</div>
+          </div>
+          <div className="pane">
+            <div>Target 1</div>
+            <div>Target 2</div>
+          </div>
+          <div className="pane">
+            <div>Functions</div>
+          </div>
+        </PanelGroup>
+        <div className="pane">
+          <h1>Error popup from bottom</h1>
+        </div>
+      </PanelGroup> 
