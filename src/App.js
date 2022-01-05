@@ -1,14 +1,17 @@
 import "./styles.css";
 import { useState } from "react";
-import Xarrow from "react-xarrows";
 import React from "react";
-import ReactDOM from "react-dom";
+
+// components
+import Line from "./components/Line";
 
 export default function App() {
   // state
   const [selectedLeftNode, setSelectedLeftNode] = useState();
   const [selectedRightNode, setSelectedRightNode] = useState();
   const [connections, setConnections] = useState([]);
+  const [selectedConnections, setSelectedConnections] = useState([]);
+  // const [selectedConnection, setSelectedConnection] = useState();
 
   const clearSelection = () => {
     setSelectedLeftNode(undefined);
@@ -35,11 +38,33 @@ export default function App() {
   };
 
   const drawLine = (source, target) => {
-    // console.log(updateXarrow);
-    connections.push({
-      source,
-      target
+    setConnections((prevConnections) => [
+      ...prevConnections,
+      {
+        source,
+        target
+      }
+    ]);
+  };
+
+  const clickLine = (connectionID) => {
+    // if (selectedConnection === connectionID) setSelectedConnection(undefined);
+    // else setSelectedConnection(connectionID);
+    console.log({
+      selectedConnections,
+      connectionID,
+      cond:
+        selectedConnections.findIndex((conID) => conID === connectionID) > -1
     });
+    if (selectedConnections.findIndex((conID) => conID === connectionID) > -1) {
+      console.log("I MUST BE DESELECTED");
+      selectedConnections.filter((cID) => cID !== connectionID);
+    } else {
+      setSelectedConnections((prevSelectedConnections) => [
+        ...prevSelectedConnections,
+        connectionID
+      ]);
+    }
   };
 
   return (
@@ -100,11 +125,20 @@ export default function App() {
 
       <div id="xarrow-container">
         {connections.map((connection) => (
-          <Xarrow
+          <span
+            onClick={() =>
+              clickLine(`${connection.source}-${connection.target}`)
+            }
             key={`${connection.source}-${connection.target}`}
-            start={connection.source}
-            end={connection.target}
-          />
+            className="pointed"
+          >
+            <Line
+              id={`${connection.source}-${connection.target}`}
+              connection={connection}
+              // selectedConnection={selectedConnection}
+              selectedConnections={selectedConnections}
+            />
+          </span>
         ))}
       </div>
     </>

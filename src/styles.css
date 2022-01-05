@@ -19,3 +19,7 @@
 .selected {
   background-color: lightskyblue;
 }
+
+.pointed {
+  cursor: pointer;
+}
