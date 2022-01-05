@@ -12,6 +12,9 @@ export default function App() {
   const [connections, setConnections] = useState([]);
   const [selectedConnections, setSelectedConnections] = useState([]);
 
+  //tests
+  // const [variableHeight, setVariableHeight] = useState('200vh');
+
   const clearSelection = () => {
     setSelectedLeftNode(undefined);
     setSelectedRightNode(undefined);
@@ -145,6 +148,10 @@ export default function App() {
           >
             Right Node
           </div>
+          {/* <div
+            style={{ height: variableHeight }}
+            onClick={() => setVariableHeight('20vh')}
+          ></div> */}
           <div
             className={`node ${
               selectedRightNode === 'item_right2' ? `selected` : ``
