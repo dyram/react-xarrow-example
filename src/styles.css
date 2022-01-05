@@ -56,9 +56,9 @@
 }
 
 .left {
-  /* position: fixed; */
+  position: fixed;
 }
 
 .right {
-  /* overflow-y: scroll; */
+  overflow-y: scroll;
 }

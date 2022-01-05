@@ -14,10 +14,11 @@ export default function App() {
 
   useEffect(() => {
     // rightPane.current.onscroll = handleScroll;
+    document.addEventListener('scroll', handleScroll);
   }, []);
 
   const handleScroll = () => {
-    console.log('Scrolling');
+    updateXarrow();
   };
 
   // state
@@ -96,7 +97,7 @@ export default function App() {
   };
 
   return (
-    <div>
+    <div onScroll={handleScroll}>
       <Xwrapper>
         <div className="header">
           <button
@@ -153,7 +154,7 @@ export default function App() {
               Left Node 3
             </div>
           </div>
-          <div className="right" ref={rightPane}>
+          <div className="right" ref={rightPane} onScroll={handleScroll}>
             <div
               className={`node ${
                 selectedRightNode === 'item_right' ? `selected` : ``
