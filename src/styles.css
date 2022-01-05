@@ -54,3 +54,11 @@
 .pointed {
   cursor: pointer;
 }
+
+.left {
+  /* position: fixed; */
+}
+
+.right {
+  /* overflow-y: scroll; */
+}
