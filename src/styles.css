@@ -1,3 +1,17 @@
+.header {
+  margin-bottom: 10px;
+}
+
+#remove-connection-btn {
+  padding: 10px;
+  cursor: pointer;
+  border: none;
+}
+
+#remove-connection-btn:hover {
+  background: skyblue;
+}
+
 .operation-container {
   display: flex;
 }

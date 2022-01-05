@@ -1,5 +1,5 @@
-import React from "react";
-import Xarrow from "react-xarrows";
+import React from 'react';
+import Xarrow from 'react-xarrows';
 
 export default function Line(props) {
   const { id, selectedConnections, connection } = props;
