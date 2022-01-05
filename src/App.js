@@ -72,15 +72,35 @@ export default function App() {
     setSelectedConnections([]);
   };
 
+  const removeAllConnections = () => {
+    clearSelection();
+    setConnections([]);
+    setSelectedConnections([]);
+  };
+
   return (
     <>
       <div className="header">
         <button
-          id="remove-connection-btn"
           onClick={removeSelectedConnections}
-          disabled={selectedConnections.length > 0}
+          disabled={selectedConnections.length < 1}
+          className={
+            selectedConnections.length < 1 ? `disabled-btn` : `btn danger-btn`
+          }
         >
-          Remove Connection
+          Remove Selected Connections
+        </button>
+
+        <button
+          onClick={removeAllConnections}
+          disabled={connections.length < 1}
+          className={
+            connections.length < 1
+              ? `disabled-btn ml-10`
+              : `btn danger-btn ml-10`
+          }
+        >
+          Remove All Connections
         </button>
       </div>
 

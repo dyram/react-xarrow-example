@@ -1,15 +1,32 @@
-.header {
-  margin-bottom: 10px;
+.ml-10 {
+  margin-left: 10px;
 }
 
-#remove-connection-btn {
+.header {
+  margin-bottom: 10px;
+  display: flex;
+}
+
+.btn {
   padding: 10px;
-  cursor: pointer;
   border: none;
 }
 
-#remove-connection-btn:hover {
-  background: skyblue;
+.btn:hover {
+  cursor: pointer;
+}
+
+.danger-btn:hover {
+  background: tomato;
+}
+
+.disabled-btn {
+  padding: 10px;
+  border: none;
+}
+
+.disabled-btn:hover {
+  cursor: not-allowed;
 }
 
 .operation-container {
