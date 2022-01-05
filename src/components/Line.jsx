@@ -7,15 +7,16 @@ export default function Line(props) {
   return (
     <Xarrow
       id={id}
-      // key={`${connection.source}-${connection.target}`}
       start={connection.source}
       end={connection.target}
-      strokeWidth={2}
+      strokeWidth={4}
       color={
         selectedConnections.findIndex((conID) => conID === id) > -1
           ? `red`
           : `blue`
       }
+      labels={{ start: `${connection.source} -> ${connection.target}` }}
+      path="smooth"
     />
   );
 }

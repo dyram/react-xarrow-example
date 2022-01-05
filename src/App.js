@@ -74,16 +74,16 @@ export default function App() {
 
   return (
     <>
-      {selectedConnections.length > 0 && (
-        <div className="header">
-          <button
-            id="remove-connection-btn"
-            onClick={removeSelectedConnections}
-          >
-            Remove Connection
-          </button>
-        </div>
-      )}
+      <div className="header">
+        <button
+          id="remove-connection-btn"
+          onClick={removeSelectedConnections}
+          disabled={selectedConnections.length > 0}
+        >
+          Remove Connection
+        </button>
+      </div>
+
       <div className="operation-container">
         <div className="left">
           <div
