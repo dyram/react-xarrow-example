@@ -2,11 +2,14 @@ import './styles.css';
 import { useState } from 'react';
 import React from 'react';
 import PanelGroup from 'react-panelgroup';
+import { useXarrow, Xwrapper } from 'react-xarrows';
 
 // custom-components
 import Line from './components/Line';
 
 export default function App() {
+  const updateXarrow = useXarrow();
+
   // state
   const [selectedLeftNode, setSelectedLeftNode] = useState();
   const [selectedRightNode, setSelectedRightNode] = useState();
@@ -108,104 +111,110 @@ export default function App() {
         </button>
       </div>
 
-      <div id="xarrow-container">
-        {connections.map((connection) => (
-          <span
-            onClick={() =>
-              clickLine(`${connection.source}-${connection.target}`)
-            }
-            key={`${connection.source}-${connection.target}`}
-            className="pointed xarrow-span"
-          >
-            <Line
-              id={`${connection.source}-${connection.target}`}
-              connection={connection}
-              selectedConnections={selectedConnections}
-            />
-          </span>
-        ))}
-      </div>
-
-      <PanelGroup
-        borderColor="gray"
-        direction="column"
-        panelWidths={[
-          { minSize: 100, resize: 'stretch' },
-          { minSize: 100, resize: 'stretch' },
-        ]}
-      >
+      <Xwrapper>
         <PanelGroup
-          borderColor="red"
+          borderColor="gray"
+          direction="column"
           panelWidths={[
             { minSize: 100, resize: 'stretch' },
             { minSize: 100, resize: 'stretch' },
-            { minSize: 100, resize: 'stretch' },
           ]}
-          direction="row"
+          // onResizeStart={updateXarrow}
+          // onResizeEnd={updateXarrow}
         >
-          {/* SOURCE PANE */}
+          <PanelGroup
+            borderColor="red"
+            panelWidths={[
+              { minSize: 100, resize: 'stretch' },
+              { minSize: 100, resize: 'stretch' },
+              { minSize: 100, resize: 'stretch' },
+            ]}
+            direction="row"
+            onResizeStart={updateXarrow}
+            onResizeEnd={updateXarrow}
+          >
+            {/* SOURCE PANE */}
+            <div className="pane">
+              <div
+                className={`node ${
+                  selectedLeftNode === 'item_left' ? `selected` : ``
+                }`}
+                id="item_left"
+                onClick={() => clickNode('left', 'item_left')}
+              >
+                Left Node
+              </div>
+              <div
+                className={`node ${
+                  selectedLeftNode === 'item_left2' ? `selected` : ``
+                }`}
+                id="item_left2"
+                onClick={() => clickNode('left', 'item_left2')}
+              >
+                Left Node 2
+              </div>
+              <div
+                className={`node ${
+                  selectedLeftNode === 'item_left3' ? `selected` : ``
+                }`}
+                id="item_left3"
+                onClick={() => clickNode('left', 'item_left3')}
+              >
+                Left Node 3
+              </div>
+            </div>
+            {/* TARGET PANE */}
+            <div className="pane">
+              <div
+                className={`node ${
+                  selectedRightNode === 'item_right' ? `selected` : ``
+                }`}
+                id="item_right"
+                onClick={() => clickNode('right', 'item_right')}
+              >
+                Right Node
+              </div>
+              <div
+                style={{ height: variableHeight }}
+                onClick={() => setVariableHeight('20vh')}
+              ></div>
+              <div
+                className={`node ${
+                  selectedRightNode === 'item_right2' ? `selected` : ``
+                }`}
+                id="item_right2"
+                onClick={() => clickNode('right', 'item_right2')}
+              >
+                Right Node 2
+              </div>
+            </div>
+            <div className="pane">
+              <div>Functions</div>
+            </div>
+          </PanelGroup>
           <div className="pane">
-            <div
-              className={`node ${
-                selectedLeftNode === 'item_left' ? `selected` : ``
-              }`}
-              id="item_left"
-              onClick={() => clickNode('left', 'item_left')}
-            >
-              Left Node
-            </div>
-            <div
-              className={`node ${
-                selectedLeftNode === 'item_left2' ? `selected` : ``
-              }`}
-              id="item_left2"
-              onClick={() => clickNode('left', 'item_left2')}
-            >
-              Left Node 2
-            </div>
-            <div
-              className={`node ${
-                selectedLeftNode === 'item_left3' ? `selected` : ``
-              }`}
-              id="item_left3"
-              onClick={() => clickNode('left', 'item_left3')}
-            >
-              Left Node 3
-            </div>
-          </div>
-          {/* TARGET PANE */}
-          <div className="pane">
-            <div
-              className={`node ${
-                selectedRightNode === 'item_right' ? `selected` : ``
-              }`}
-              id="item_right"
-              onClick={() => clickNode('right', 'item_right')}
-            >
-              Right Node
-            </div>
-            <div
-              style={{ height: variableHeight }}
-              onClick={() => setVariableHeight('20vh')}
-            ></div>
-            <div
-              className={`node ${
-                selectedRightNode === 'item_right2' ? `selected` : ``
-              }`}
-              id="item_right2"
-              onClick={() => clickNode('right', 'item_right2')}
-            >
-              Right Node 2
-            </div>
-          </div>
-          <div className="pane">
-            <div>Functions</div>
+            <h1>Error popup from bottom</h1>
           </div>
         </PanelGroup>
-        <div className="pane">
-          <h1>Error popup from bottom</h1>
+
+        <div id="xarrow-container">
+          {connections.map((connection) => (
+            <span
+              onClick={() =>
+                clickLine(`${connection.source}-${connection.target}`)
+              }
+              key={`${connection.source}-${connection.target}`}
+              className="pointed xarrow-span"
+            >
+              <Line
+                id={`${connection.source}-${connection.target}`}
+                connection={connection}
+                selectedConnections={selectedConnections}
+              />
+            </span>
+          ))}
         </div>
-      </PanelGroup>
+      </Xwrapper>
     </>
   );
 }
