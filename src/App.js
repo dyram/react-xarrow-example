@@ -1,5 +1,5 @@
 import './styles.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import React from 'react';
 import PanelGroup from 'react-panelgroup';
 import { useXarrow, Xwrapper } from 'react-xarrows';
@@ -9,6 +9,15 @@ import Line from './components/Line';
 
 export default function App() {
   const updateXarrow = useXarrow();
+
+  const handleScroll = () => {
+    console.log('SCROLLING');
+    updateXarrow();
+  };
+
+  useEffect(() => {
+    // document.addEventListener('scroll', handleScroll);
+  }, []);
 
   // state
   const [selectedLeftNode, setSelectedLeftNode] = useState();
@@ -164,7 +173,7 @@ export default function App() {
               </div>
             </div>
             {/* TARGET PANE */}
-            <div className="pane">
+            <div className="pane" onScroll={handleScroll}>
               <div
                 className={`node ${
                   selectedRightNode === 'item_right' ? `selected` : ``
@@ -188,6 +197,7 @@ export default function App() {
                 Right Node 2
               </div>
             </div>
+            {/* FUNCTION PANE */}
             <div className="pane">
               <div>Functions</div>
             </div>
