@@ -121,21 +121,9 @@ export default function App() {
       </div>
 
       <Xwrapper>
-        <PanelGroup
-          borderColor="gray"
-          direction="column"
-          panelWidths={[
-            { minSize: 100, resize: 'stretch' },
-            { minSize: 100, resize: 'stretch' },
-          ]}
-        >
+        <PanelGroup borderColor="gray" direction="column">
           <PanelGroup
             borderColor="red"
-            // panelWidths={[
-            //   { minSize: 100, resize: 'stretch' },
-            //   { minSize: 100, resize: 'stretch' },
-            //   { minSize: 100, resize: 'stretch' },
-            // ]}
             direction="row"
             onResizeEnd={updateXarrow}
           >
