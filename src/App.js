@@ -93,6 +93,18 @@ export default function App() {
     setSelectedConnections([]);
   };
 
+  const panelWidthConfig = [
+    {
+      minSize: 60,
+    },
+    {
+      minSize: 60,
+    },
+    {
+      minSize: 60,
+    },
+  ];
+
   return (
     <>
       <div className="header">
@@ -125,6 +137,7 @@ export default function App() {
             borderColor="red"
             direction="row"
             onResizeEnd={updateXarrow}
+            // panelWidths={panelWidthConfig}
           >
             {/* SOURCE PANE */}
             <div className="pane">
