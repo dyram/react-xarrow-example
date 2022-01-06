@@ -94,18 +94,6 @@ export default function App() {
     setSelectedConnections([]);
   };
 
-  const panelWidthConfig = [
-    {
-      minSize: 60,
-    },
-    {
-      minSize: 60,
-    },
-    {
-      minSize: 60,
-    },
-  ];
-
   return (
     <>
       <div className="header">
