@@ -5,6 +5,7 @@
 .header {
   margin-bottom: 10px;
   display: flex;
+  z-index: 100;
 }
 
 .btn {
@@ -58,4 +59,9 @@
 .pane {
   padding: 10px;
   overflow-y: scroll;
+}
+
+.footer-pane {
+  padding: 10px;
+  z-index: 100;
 }

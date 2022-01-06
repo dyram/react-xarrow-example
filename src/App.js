@@ -11,7 +11,6 @@ export default function App() {
   const updateXarrow = useXarrow();
 
   const handleScroll = () => {
-    console.log('SCROLLING');
     updateXarrow();
   };
 
@@ -187,7 +186,7 @@ export default function App() {
               <div>Functions</div>
             </div>
           </PanelGroup>
-          <div className="pane">
+          <div className="footer-pane">
             <h1>Error popup from bottom</h1>
           </div>
         </PanelGroup>
