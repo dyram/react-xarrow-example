@@ -1,8 +1,9 @@
 import './styles.css';
 import { useState, useEffect } from 'react';
 import React from 'react';
-import PanelGroup from 'react-panelgroup';
 import { useXarrow, Xwrapper } from 'react-xarrows';
+
+import ResizePanel from 'react-resize-panel';
 
 // custom-components
 import Line from './components/Line';
@@ -132,15 +133,10 @@ export default function App() {
       </div>
 
       <Xwrapper>
-        <PanelGroup borderColor="gray" direction="column">
-          <PanelGroup
-            borderColor="red"
-            direction="row"
-            onResizeEnd={updateXarrow}
-            // panelWidths={panelWidthConfig}
-          >
-            {/* SOURCE PANE */}
-            <div className="pane">
+        <div className="resize-flex-container">
+          {/* SOURCE PANE */}
+          <ResizePanel direction="e">
+            <div className="pane" onMouseOver={handleScroll}>
               <div
                 className={`node ${
                   selectedLeftNode === 'item_left' ? `selected` : ``
@@ -169,8 +165,14 @@ export default function App() {
                 Left Node 3
               </div>
             </div>
-            {/* TARGET PANE */}
-            <div className="pane" onScroll={handleScroll}>
+          </ResizePanel>
+          {/* TARGET PANE */}
+          <ResizePanel direction="e">
+            <div
+              className="pane"
+              onScroll={handleScroll}
+              onMouseOver={handleScroll}
+            >
               <div
                 className={`node ${
                   selectedRightNode === 'item_right' ? `selected` : ``
@@ -194,15 +196,16 @@ export default function App() {
                 Right Node 2
               </div>
             </div>
-            {/* FUNCTION PANE */}
-            <div className="pane">
-              <div>Functions</div>
-            </div>
-          </PanelGroup>
-          <div className="footer-pane">
-            <h1>Error popup from bottom</h1>
+          </ResizePanel>
+          {/* FUNCTION PANE */}
+          <div className="pane grow-pane">
+            <div>Functions</div>
           </div>
-        </PanelGroup>
+        </div>
+
+        {/* <div className="footer-pane">
+          <h1>Error popup from bottom</h1>
+        </div> */}
 
         <div id="xarrow-container">
           {connections.map((connection) => (

@@ -15,10 +15,11 @@ export default function Line(props) {
           ? `red`
           : `blue`
       }
-      labels={{ start: `${connection.source} -> ${connection.target}` }}
+      // labels={{ start: `${connection.source} -> ${connection.target}` }}
       path="straight"
       startAnchor="right"
       endAnchor="left"
+      dashness={true}
     />
   );
 }
