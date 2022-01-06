@@ -128,18 +128,15 @@ export default function App() {
             { minSize: 100, resize: 'stretch' },
             { minSize: 100, resize: 'stretch' },
           ]}
-          // onResizeStart={updateXarrow}
-          // onResizeEnd={updateXarrow}
         >
           <PanelGroup
             borderColor="red"
-            panelWidths={[
-              { minSize: 100, resize: 'stretch' },
-              { minSize: 100, resize: 'stretch' },
-              { minSize: 100, resize: 'stretch' },
-            ]}
+            // panelWidths={[
+            //   { minSize: 100, resize: 'stretch' },
+            //   { minSize: 100, resize: 'stretch' },
+            //   { minSize: 100, resize: 'stretch' },
+            // ]}
             direction="row"
-            onResizeStart={updateXarrow}
             onResizeEnd={updateXarrow}
           >
             {/* SOURCE PANE */}

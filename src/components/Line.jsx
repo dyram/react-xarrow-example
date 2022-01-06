@@ -17,6 +17,8 @@ export default function Line(props) {
       }
       labels={{ start: `${connection.source} -> ${connection.target}` }}
       path="smooth"
+      startAnchor="right"
+      endAnchor="left"
     />
   );
 }
