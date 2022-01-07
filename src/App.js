@@ -11,12 +11,46 @@ import Line from './components/Line';
 export default function App() {
   const updateXarrow = useXarrow();
 
+  // V.V Important function
+  const checkScrollVisibilityAndRedraw = () => {
+    if (connections.length > 0) {
+      let updatedConnections = connections;
+
+      updatedConnections.map((connection, index) => {
+        let targetY = document
+          .getElementById(connection.target)
+          .getBoundingClientRect().y;
+        if (targetY < 25) {
+          updatedConnections[index].isScrollTopVisible = false;
+        }
+        if (targetY > 25) {
+          updatedConnections[index].isScrollTopVisible = true;
+        }
+        if (targetY > 655) {
+          updatedConnections[index].isScrollBottomVisible = false;
+        }
+        if (targetY < 655) {
+          updatedConnections[index].isScrollBottomVisible = true;
+        }
+      });
+
+      setConnections(updatedConnections);
+    }
+
+    // console.log(document.getElementById('item_right2').getBoundingClientRect());
+  };
+
   const handleScroll = () => {
     updateXarrow();
+    checkScrollVisibilityAndRedraw();
   };
 
   useEffect(() => {
     // document.addEventListener('scroll', handleScroll);
+    // setConnections((prevConnections) => [
+    //   ...prevConnections,
+    //   { source: 'item_left', target: 'scroll-div-target-bottom' },
+    // ]);
   }, []);
 
   // state
@@ -58,6 +92,8 @@ export default function App() {
       {
         source,
         target,
+        isScrollTopVisible: true,
+        isScrollBottomVisible: true,
       },
     ]);
   };
@@ -124,7 +160,7 @@ export default function App() {
         <div className="resize-flex-container">
           {/* SOURCE PANE */}
           <ResizePanel direction="e">
-            <div className="pane" onMouseOver={handleScroll}>
+            <div className="pane" onMouseOver={updateXarrow}>
               <div
                 className={`node ${
                   selectedLeftNode === 'item_left' ? `selected` : ``
@@ -159,8 +195,17 @@ export default function App() {
             <div
               className="pane"
               onScroll={handleScroll}
-              onMouseOver={handleScroll}
+              onMouseOver={updateXarrow}
+              id={'target-pane'}
             >
+              <div
+                id="scroll-div-target"
+                style={{
+                  height: '0.8px',
+                  visibility: 'hidden',
+                  position: 'fixed',
+                }}
+              ></div>
               <div
                 className={`node ${
                   selectedRightNode === 'item_right' ? `selected` : ``
@@ -172,7 +217,10 @@ export default function App() {
               </div>
               <div
                 style={{ height: variableHeight }}
-                onClick={() => setVariableHeight('20vh')}
+                onClick={() => {
+                  setVariableHeight('20vh');
+                  checkScrollVisibilityAndRedraw();
+                }}
               ></div>
               <div
                 className={`node ${
@@ -183,6 +231,15 @@ export default function App() {
               >
                 Right Node 2
               </div>
+              <div
+                id="scroll-div-target-bottom"
+                style={{
+                  height: '0.8px',
+                  visibility: 'hidden',
+                  position: 'fixed',
+                  top: '680px',
+                }}
+              ></div>
             </div>
           </ResizePanel>
           {/* FUNCTION PANE */}
